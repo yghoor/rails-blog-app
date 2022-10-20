@@ -1,1 +1,17 @@
-<h1>Here is a post from a user<h1>
+<section>
+  <div>
+    <h3><%= @post.title %> by <%= @post.author.name %></h3>
+
+    <small>Comments: <%= @post.comments_counter || 0 %>, Likes: <%= @post.likes_counter || 0 %></small>
+  </div>
+  
+  <p><%= @post.text %></p>
+
+  <div>
+    <% @comments.each do |comment| %>
+      <li>
+        <p><%= comment.author.name %>: <%= comment.text %></p>
+      </li>
+    <% end %>
+  </div>
+</section>
