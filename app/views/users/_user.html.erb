@@ -1,0 +1,7 @@
+<%= image_tag(@user.photo_url, alt: 'Profile Picture') %>
+
+<a href="<%= user_path(@user) %>">
+  <h2><%= @user.name %></h2>
+
+  <small>Number of posts: <%= @user.posts_counter || 0 %></small>
+</a>
