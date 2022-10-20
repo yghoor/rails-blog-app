@@ -1,1 +1,28 @@
-<h1>Here is a user<h1>
+<section>
+  <div>
+    <%= render 'users/user' %>
+  </div>
+
+  <div>
+    <p><%= @user.bio %></p>
+  </div>
+
+  <ul>
+    <% @user_posts.each do |post| %>
+      <li>
+        <a href="<%= user_post_path(post) %>">
+
+          <h2><%= post.title %></h2>
+
+          <p><%= post.text %></p>
+
+          <small>Comments: <%= post.comments_counter || 0 %>, Likes: <%= post.likes_counter || 0 %></small>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+  <button>
+    <%= link_to 'See all Posts', user_posts_path(@user) %>
+  </button>
+</section>
