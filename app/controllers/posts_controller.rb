@@ -7,6 +7,10 @@ class PostsController < ApplicationController
     @user_posts = @user.posts.all.order(created_at: :desc).offset(@page * POSTS_PER_PAGE).limit(POSTS_PER_PAGE)
   end
 
+  def new
+    @post = Post.new
+  end
+
   def create
     post = current_user.posts.new(post_params)
     post.author = current_user
