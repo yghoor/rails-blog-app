@@ -1,4 +1,6 @@
 <section>
+  <%= link_to 'New Post', new_user_post_path(current_user) %>
+
   <ul>
     <% @users.each do |user| %>
       <li>
