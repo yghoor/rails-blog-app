@@ -7,6 +7,8 @@
   
   <p><%= @post.text %></p>
 
+  <%= link_to 'New Comment', new_user_post_comment_path(current_user, @post) %>
+
   <div>
     <% @comments.each do |comment| %>
       <li>
