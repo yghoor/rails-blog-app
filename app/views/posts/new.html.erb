@@ -1,0 +1,15 @@
+<% flash.each do |key, message| %>
+  <p><%= message %></p>
+<% end %>
+
+<h1>Create Post</h1>
+
+<%= form_with url: user_posts_path(current_user.id), scope: user_posts_url do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :text %>
+  <%= f.text_area :text %>
+
+  <%= f.submit 'Add Post' %>
+<% end %>
