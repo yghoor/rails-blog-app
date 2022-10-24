@@ -10,7 +10,7 @@
   <ul>
     <% @user_posts.each do |post| %>
       <li>
-        <a href="<%= user_post_path(post) %>">
+        <a href="<%= user_post_path(@user, post) %>">
 
           <h2><%= post.title %></h2>
 
