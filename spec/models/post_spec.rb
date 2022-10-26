@@ -33,4 +33,13 @@ RSpec.describe Post, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  context 'after save' do
+    it 'increments the author posts counter' do
+      user = User.create(name: 'John', photo_url: 'photo_url', bio: 'This is my bio')
+      Post.create(title: 'Title', text: 'Text', author: user)
+      expect(user.posts_counter).to eq(1)
+    end
+  end
+
 end
