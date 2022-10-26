@@ -25,7 +25,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments
+    @comments = @post.comments.includes(:author).order(created_at: :desc)
   end
 
   private
