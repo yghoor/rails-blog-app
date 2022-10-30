@@ -1,4 +1,8 @@
-<%= image_tag(@user.photo_url, alt: 'Profile Picture') %>
+<% if @user.photo_url %>
+  <%= image_tag(@user.photo_url, alt: 'Profile Picture') %>
+<% else %>
+  <%= image_tag('https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y', alt: 'Profile Picture') %>
+<% end %>
 
 <a href="<%= user_path(@user) %>">
   <h2><%= @user.name %></h2>
