@@ -1,4 +1,8 @@
 <section>
+  <% if can? :delete, @post %>
+    <%= button_to "Delete Post", user_post_path(@post.author_id, @post.id), method: :delete  %>
+  <% end %>
+
   <div>
     <h3><%= @post.title %> by <%= @post.author.name %></h3>
 
