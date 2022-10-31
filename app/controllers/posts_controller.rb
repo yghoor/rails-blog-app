@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+
   POSTS_PER_PAGE = 2
 
   def index
