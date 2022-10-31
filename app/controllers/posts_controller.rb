@@ -28,6 +28,11 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:author).order(created_at: :desc)
   end
 
+  def destroy
+    Post.find(params[:id]).destroy
+    redirect_to user_posts_path(current_user)
+  end
+
   private
 
   def post_params
