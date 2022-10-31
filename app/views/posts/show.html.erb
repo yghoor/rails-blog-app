@@ -9,6 +9,7 @@
 
   <% if user_signed_in? %>
     <%= button_to "Like", user_post_likes_path(@post.author, @post) %>
+    <%= link_to 'New Comment', new_user_post_comment_path(current_user, @post) %>
   <% end %>
 
   <div>
