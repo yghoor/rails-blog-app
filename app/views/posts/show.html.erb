@@ -20,6 +20,10 @@
     <% @comments.each do |comment| %>
       <li>
         <p><%= comment.author.name %>: <%= comment.text %></p>
+
+        <% if can? :delete, comment %>
+          <%= button_to "Delete Comment", user_post_comment_path(current_user, @post, comment), method: :delete  %>
+        <% end %>
       </li>
     <% end %>
   </div>
