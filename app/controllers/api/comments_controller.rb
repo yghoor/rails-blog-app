@@ -13,7 +13,7 @@ class Api::CommentsController < ApplicationController
       render json: {
         messages: "Comment created successfully",
         is_success: true,
-        data: {comment: comment}
+        data: {comment: comment.to_json(only: [:id, :author_id, :post_id, :text])}
       }, status: :ok
     else
       render json: {
