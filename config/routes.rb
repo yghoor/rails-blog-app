@@ -4,6 +4,17 @@ Rails.application.routes.draw do
 
   root "users#index"
 
+  namespace :api, defaults: {format: :json} do
+    get '/users/:user_id/posts', to: 'posts#index'
+    get '/users/:user_id/posts/:post_id/comments', to: 'comments#index'
+    post '/users/:user_id/posts/:post_id/comments/create', to: 'comments#create'
+
+    devise_scope :user do
+      post "sign_up", to: "registrations#create"
+      post "sign_in", to: "sessions#create"
+    end
+  end
+
   resources :users , only: [:index, :show] do
     resources :posts, only: [:index, :new, :create, :show, :destroy] do
       resources :comments, only: [:new, :create, :destroy]
