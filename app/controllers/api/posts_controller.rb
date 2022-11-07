@@ -2,7 +2,11 @@ class Api::PostsController < ApplicationController
   before_action :load_posts
   before_action :ensure_params_exist
   def index
-    render json: @all_posts.to_json(only: [:id, :author_id, :title, :text, :comments_counter, :likes_counter])
+    render json: {
+      messages: "Posts loaded successfully",
+      is_success: true,
+      data: {posts: @all_posts.to_json(only: [:id, :author_id, :title, :text, :comments_counter, :likes_counter])}
+    }, status: :ok
   end
 
   private

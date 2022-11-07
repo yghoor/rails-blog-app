@@ -3,7 +3,11 @@ class Api::CommentsController < ApplicationController
   before_action :ensure_params_exist, only: :create
 
   def index
-    render json: @comments
+    render json: {
+      messages: "Posts loaded successfully",
+      is_success: true,
+      data: {comments: @comments.to_json(only: [:id, :author_id, :post_id, :text])}
+    }, status: :ok
   end
 
   def create
