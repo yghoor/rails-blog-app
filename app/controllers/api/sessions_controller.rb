@@ -7,13 +7,13 @@ class Api::SessionsController < Devise::SessionsController
       sign_in(@user)
 
       render json: {
-        messages: "Signed In Successfully",
+        messages: 'Signed In Successfully',
         is_success: true,
-        data: {user: @user}
+        data: { user: @user }
       }, status: :ok
     else
       render json: {
-        messages: "Signed In Failed - Unauthorized",
+        messages: 'Signed In Failed - Unauthorized',
         is_success: false,
         data: {}
       }, status: :unauthorized
@@ -29,14 +29,10 @@ class Api::SessionsController < Devise::SessionsController
   def load_user
     @user = User.find_for_database_authentication(email: params[:email])
 
-    if @user
-      return @user
-    else
-      render json: {
-        messages: "Cannot get User",
-        is_success: false,
-        data: {}
-      }, status: :failure
-    end
+    @user || render(json: {
+                      messages: 'Cannot get User',
+                      is_success: false,
+                      data: {}
+                    }, status: :failure)
   end
 end
