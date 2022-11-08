@@ -1,0 +1,167 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/users/{user_id}/posts/{post_id}/comments":
+    get:
+      summary: Retrieves comments for a post
+      parameters:
+      - name: user_id
+        in: path
+        description: user_id
+        required: true
+        schema:
+          type: string
+      - name: post_id
+        in: path
+        description: post_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Comments loaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  author_id:
+                    type: integer
+                  post_id:
+                    type: integer
+                  text:
+                    type: string
+        '400':
+          description: Missing Params
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: string
+                  is_success:
+                    type: boolean
+                  data:
+                    type: object
+  "/api/users/{user_id}/posts/{post_id}/comments/create":
+    parameters:
+    - name: user_id
+      in: path
+      description: user_id
+      required: true
+      schema:
+        type: string
+    - name: post_id
+      in: path
+      description: post_id
+      required: true
+      schema:
+        type: string
+    - name: text
+      in: query
+      description: text
+      schema:
+        type: string
+    post:
+      summary: Creates a comment
+      parameters: []
+      responses:
+        '200':
+          description: Comment created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  author_id:
+                    type: integer
+                  post_id:
+                    type: integer
+                  text:
+                    type: string
+        '400':
+          description: Missing Params
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: string
+                  is_success:
+                    type: boolean
+                  data:
+                    type: object
+        '422':
+          description: Comment creation failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: string
+                  is_success:
+                    type: boolean
+                  data:
+                    type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+  "/api/users/{user_id}/posts":
+    get:
+      summary: Retrieves posts for a user
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Posts loaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  author_id:
+                    type: integer
+                  title:
+                    type: string
+                  text:
+                    type: string
+                  comments_counter:
+                    type: integer
+                  likes_counter:
+                    type: integer
+        '400':
+          description: Missing Params
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: string
+                  is_success:
+                    type: boolean
+                  data:
+                    type: object
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
